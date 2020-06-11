@@ -15,10 +15,33 @@
     <ol>
         <li>administrator email: administrator@network.com, password: password12</li>
         <li>You can add advisors iff you are logged in as admin</li>
-        <li>You can send data to book only using current logged in user's id (else it will return 401 forbidden response)</li>
-        <li>You can get calls only for current user's id (else it will return 401 forbidden response)</li>
+        <li>You can send data to book only (requires user to be logged in) using current logged in user's id (else it will return 401 forbidden response)</li>
+        <li>You can get calls (requires user to be logged in) only for current user's id (else it will return 401 forbidden response)</li>
         <li>user id is just the pk of user object</li>
         <li>advisor id is just the pk of advisor object</li>
+        <li>
+            Urls:
+            <ol>
+                <li>
+                    For adding advisors: <a href="https://advisor-networks.herokuapp.com/admin/advisor">https://advisor-networks.herokuapp.com/admin/advisor</a>
+                </li>
+                <li>
+                    For user login: <a href="https://advisor-networks.herokuapp.com/user/login/">https://advisor-networks.herokuapp.com/user/login/</a>
+                </li>
+                <li>
+                    For user registration: <a href="https://advisor-networks.herokuapp.com/user/register/">https://advisor-networks.herokuapp.com/user/register/</a>
+                </li>
+                <li>
+                    For getting list of advisors: https://advisor-networks.herokuapp.com/user/<int:user_id>/advisor
+                </li>
+                <li>
+                    For booking calls: https://advisor-networks.herokuapp.com/user/<int:user_id>/advisor/<int:advisor_id>
+                </li>
+                <li>
+                    For getting list of booked calls: https://advisor-networks.herokuapp.com/user/<int:user_id>/advisor/bookings
+                </li>
+            </ol>
+        </li>
     </ol>
 </body>
 </html>
