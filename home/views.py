@@ -14,16 +14,16 @@ from django.contrib.auth.decorators import login_required
 def homeView(request):
     return render(request, 'home/index.html')
 
-@api_view(['POST', 'GET'])
+@api_view(['POST'])
 @login_required
 def addAdvisor(request):
-    # """
-    # Add advisor like:
-    # {
-    #     "name": "__advisor_name__",
-    #     "url" : "__photo_url__"
-    # }
-    # """
+    """
+    Add advisor like:
+    {
+        "name": "__advisor_name__",
+        "url" : "__photo_url__"
+    }
+    """
     if request.user.is_admin:
         if request.method == 'POST':
             name = request.data['name']
