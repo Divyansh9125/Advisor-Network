@@ -66,7 +66,9 @@ def registerView(request):
 
         if first_name is not None and last_name is not None and email is not None and password is not None:
 
-            user = UserProfile.objects.create_user(first_name=first_name, last_name=last_name, email=email, password=password)
+            user = UserProfile.objects.create_user(first_name=first_name, last_name=last_name, email=email)
+            user.set_password(password)
+            user.save()
             jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
             jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
             payload = jwt_payload_handler(user)
