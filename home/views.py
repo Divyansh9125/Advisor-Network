@@ -31,14 +31,21 @@ def addAdvisor(request):
             if url is not None and name is not None:
                 advisor = Advisor(name=name, url=url)
                 advisor.save()
-                return HttpResponse(status=200)
+                return Response([{"Success":"Advisor Added"}], status=200)
             else:
-                return HttpResponse(status=400)
+                return Response([{"Error":"Send all fields"}], status=400)
     else:
-        return HttpResponse(status=400)
+        return Response([{"Error":"You are not admin"}], status=401)
 
 @api_view(['POST'])
 def loginView(request):
+    """
+    Send login data like:
+    {
+        "email": "__user_email__",
+        "password" : "__user_password__"
+    }
+    """
     if request.method=='POST':
         email = request.data['email']
         password = request.data['password']
@@ -58,6 +65,15 @@ def loginView(request):
 
 @api_view(['POST'])
 def registerView(request):
+    """
+    Send user data like:
+    {
+        "first_name": "_first_name__",
+        "last_name" : "__last_name__",
+        "email": "__user_email__",
+        "password" : "__user_password__"
+    }
+    """
     if request.method == 'POST':
         first_name = request.data['first_name']
         last_name = request.data['last_name']
@@ -94,6 +110,12 @@ def getAdvisors(request, user_id):
 @login_required
 @api_view(['POST'])
 def bookCall(request, user_id, advisor_id):
+    """
+    Send call booking data like:
+    {
+        "date_time": "_date_time__"
+    }
+    """
     if request.method == 'POST':
         if request.user.pk == user_id:
             user = UserProfile.objects.get(pk=user_id)

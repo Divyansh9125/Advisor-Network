@@ -14,6 +14,11 @@
     <h3>Here are some guidelines:</h3>
     <ol>
         <li>administrator email: administrator@network.com, password: password12</li>
+        <li>You can add advisors iff you are logged in as admin</li>
+        <li>You can send data to book only using current logged in user's id (else it will return 401 forbidden response)</li>
+        <li>You can get calls only for current user's id (else it will return 401 forbidden response)</li>
+        <li>user id is just the pk of user object</li>
+        <li>advisor id is just the pk of advisor object</li>
     </ol>
 </body>
 </html>
